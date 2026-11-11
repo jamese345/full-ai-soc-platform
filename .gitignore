@@ -134,3 +134,7 @@ data/generated/
 
 .pytest_cache/
 .cache/
+# Local SQLite databases
+*.db
+*.sqlite
+*.sqlite3
