@@ -110,7 +110,7 @@ Current integrated dataset contains approximately **867 attack patterns**.
 Examples:
 
 | Detection | MITRE Technique |
-|---|---|
+| --- | --- |
 | Brute Force | T1110 |
 | Suspicious Login | T1078 |
 | Suspicious Request | No direct mapping |
@@ -344,7 +344,7 @@ full-ai-soc-platform/
 ## ⚙️ Technology Stack
 
 | Technology | Purpose |
-|---|---|
+| --- | --- |
 | Python | Core platform |
 | Pandas | Security data processing |
 | Scikit-learn | ML anomaly detection |
@@ -514,7 +514,7 @@ Potential future development includes:
 
 Built as part of my journey toward becoming an **AI SOC Analyst**, combining:
 
-**Cybersecurity + Python + Machine Learning + Threat Intelligence + RAG + AI Agents**
+### Cybersecurity + Python + Machine Learning + Threat Intelligence + RAG + AI Agents
 
 The goal is to build practical security systems that can support real-world SOC workflows.
 
