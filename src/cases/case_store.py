@@ -62,27 +62,35 @@ class CaseStore:
 
         return deepcopy(json.loads(row[0]))
 
-    def update(self, case_id: str, case: dict) -> dict:
-        case_copy = deepcopy(case)
+    def update(self, case_id: str, updates: dict) -> dict:
+        """Update selected fields while preserving the existing case."""
+
+        existing_case = self.get(case_id)
+
+        if existing_case is None:
+            raise KeyError(f"Case not found: {case_id}")
+
+        updated_case = deepcopy(existing_case)
+        updated_case.update(deepcopy(updates))
 
         with closing(self._connect()) as connection:
-            cursor = connection.execute(
+            connection.execute(
                 """
                 UPDATE cases
                 SET case_data = ?
                 WHERE case_id = ?
                 """,
                 (
-                    json.dumps(case_copy, ensure_ascii=False),
+                    json.dumps(
+                        updated_case,
+                        ensure_ascii=False,
+                    ),
                     case_id,
                 ),
             )
             connection.commit()
 
-        if cursor.rowcount == 0:
-            raise KeyError(f"Case not found: {case_id}")
-
-        return deepcopy(case_copy)
+        return deepcopy(updated_case)
 
     def delete(self, case_id: str) -> bool:
         with closing(self._connect()) as connection:
